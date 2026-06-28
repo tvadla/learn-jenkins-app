@@ -3,7 +3,7 @@ pipeline {
 
     stages {
         // this is a comment
-        /*
+        
        
        
         stage('Build') {
@@ -24,7 +24,7 @@ pipeline {
                 '''
             }
         }
-         */
+         
         stage('Test'){
             parallel {
                 stage('UnitTest'){
@@ -75,6 +75,20 @@ pipeline {
                         }
                     }
                 }
+            }
+        }
+        stage('Deploy') {
+            agent{
+                docker{
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh '''
+                    npm install -g netlify-cli -g
+                    netlify --version
+                '''
             }
         }        
     }
