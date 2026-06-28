@@ -23,6 +23,9 @@ pipeline {
         stage('Test'){
             steps{
                 echo "test stage"
+                sh '''
+                    test -f biuld/index.html
+                '''
             }
         }
     }
