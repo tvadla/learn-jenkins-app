@@ -89,6 +89,7 @@ pipeline {
             }
             steps {
                 sh '''
+                echo "testing SCM poll"
                     npm install netlify-cli@20.1.1
                     node_modules/.bin/netlify --version
                     echo "Deploying to productoion site ID : $NETLIFY_SITE_ID"
