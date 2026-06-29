@@ -62,10 +62,6 @@ pipeline {
                         
                         }
                     }
-
-                    environment {
-                        CI_ENVIRONMENT_URL = 'https://taupe-brioche-f0e1e7.netlify.app'
-                    }
                     
                     steps{
                         sh '''
@@ -109,6 +105,9 @@ pipeline {
                     reuseNode true
                 
                 }
+            }
+            environment {
+                CI_ENVIRONMENT_URL = 'https://taupe-brioche-f0e1e7.netlify.app'
             }
             
             steps{
