@@ -99,11 +99,12 @@ pipeline {
             }
         }
 
-        stage('Manual approval') {
+        stage('approval') {
             steps {
                 timeout(time: 1, unit: 'MINUTES') {
+                    input message: 'ready to deploy?', ok: 'Yes, iam sure. i want to deploy' 
                 }
-                input message: 'ready to deploy?', ok: 'Yes, iam sure. i want to deploy' 
+                
             }
         } 
 
