@@ -27,7 +27,7 @@ pipeline {
             }
         }
          
-        stage('Test'){
+        stage('Tests'){
             parallel {
                 stage('UnitTest'){
                     agent{
