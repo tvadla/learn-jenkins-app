@@ -8,6 +8,7 @@ pipeline {
         AWS_ECS_CLUSTER = 'learnjenkinsapp-cluster-prod'
         AWS_ECS_SERVICE_PROD = 'LearnJenkinsApp-TaskDefinition-Prod-service-q88y8qgu'
         AWS_ECS_TD_PROD = 'LearnJenkinsApp-TaskDefinition-Prod'
+        AWS_DOCKER_REGISTORY = '591950085577.dkr.ecr.us-east-1.amazonaws.com'
     }
 
     stages {
@@ -44,7 +45,9 @@ pipeline {
             steps {
                 sh '''
                     yum install -y docker
-                    docker build -t $APP_NAME:$REACT_APP_VERSION .
+                    docker build -t $AWS_DOCKER_REGISTORY/$APP_NAME:$REACT_APP_VERSION .
+                    aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_DOCKER_REGISTORY
+                    docker push $AWS_DOCKER_REGISTORY/$APP_NAME:$REACT_APP_VERSION
                 '''
             }
         }
